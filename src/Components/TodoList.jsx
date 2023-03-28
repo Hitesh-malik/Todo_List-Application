@@ -3,6 +3,7 @@ import CreateTask from '../Modals/CreateTask';
 import Cards from './Cards';
 import img from '../assets/Empty.jpg'
 import Search from './Search';
+import Counter from './Counter';
 //  so we can use the toast feature
 import { toast } from "react-toastify";
 
@@ -25,7 +26,7 @@ function TodoList() {
         setContainer(true);
         console.log(array);
         // if array have data then only we can display the data
-        if ( array && array.length > 2) {
+        if (array && array.length > 2) {
             let Arrobj = JSON.parse(array);
             // console.log(Arrobj);
             let arrayOfTaskName = [];
@@ -104,13 +105,20 @@ function TodoList() {
     return (
         <>
             <div className='header text-center position-relative'>
-                <h3 >Todo List</h3>
-                <button className='btn btn-primary mt-2' onClick={() => setModal(true)}>Create Task</button>
+                <h1>
+                    Todo List
+                </h1>
+                <div className='d-flex flex-row justify-content-center'>
+                    <button className='btn btn-primary mt-2' onClick={() => setModal(true)}>Create Task</button>
+                    <Counter taskList={taskList}/>
+                </div>
+
 
                 {/*search operation*/}
                 <Search taskList={taskList} searchTaskList={searchTaskList} setSearchTaskList={setSearchTaskList} />
 
                 <button className='btn bg-danger mt-2 position-absolute bottom-0 end-0 m-3 text-white' onClick={clickHandlerClearAll} > clear all</button>
+
             </div>
             {
                 container ?
